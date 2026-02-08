@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Birthday Surprise</title>
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: radial-gradient(circle at top, #1a002b, #000);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+}
+
+#gift {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(45deg, #ff0066, #ffcc00);
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 0 30px #ff0080;
+    animation: bounce 2s infinite;
+}
+
+#gift::before {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 200px;
+    background: gold;
+    left: 85px;
+}
+
+#gift::after {
+    content: "";
+    position: absolute;
+    width: 200px;
+    height: 30px;
+    background: gold;
+    top: 85px;
+}
+
+@keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+#card {
+    display: none;
+    text-align: center;
+    animation: fadeIn 2s forwards;
+}
+
+#photo {
+    display: none;
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 20px;
+    box-shadow: 0 0 30px hotpink;
+    animation: fadeIn 2s forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+h1 {
+    font-size: 3em;
+    text-shadow: 0 0 15px #ff00ff;
+}
+
+p {
+    font-size: 1.5em;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    animation: fall 4s linear infinite;
+}
+
+@keyframes fall {
+    0% { transform: translateY(-10vh) rotate(0deg); opacity:1; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity:0; }
+}
+
+.firework {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+    from { transform: scale(0); opacity:1; }
+    to { transform: scale(8); opacity:0; }
+}
+</style>
+</head>
+
+<body>
+
+<div id="gift" onclick="openGift()"></div>
+
+<div id="card">
+    <h1>🎉 Happy Birthday 🎂</h1>
+    <p>Here is your special memory 💖</p>
+</div>
+
+<img id="photo" src="p.jpeg" alt="Birthday Photo">
+
+<script>
+function openGift() {
+    document.getElementById("gift").style.display = "none";
+    document.getElementById("card").style.display = "block";
+    document.getElementById("photo").style.display = "block";
+    confetti();
+    fireworks();
+}
+
+function confetti() {
+    for (let i = 0; i < 80; i++) {
+        let c = document.createElement("div");
+        c.className = "confetti";
+        c.style.left = Math.random()*100 + "vw";
+        c.style.background = `hsl(${Math.random()*360},100%,50%)`;
+        c.style.animationDuration = (2 + Math.random()*3) + "s";
+        document.body.appendChild(c);
+    }
+}
+
+function fireworks() {
+    setInterval(() => {
+        let f = document.createElement("div");
+        f.className = "firework";
+        f.style.left = Math.random()*100 + "vw";
+        f.style.top = Math.random()*100 + "vh";
+        f.style.background = `hsl(${Math.random()*360},100%,50%)`;
+        document.body.appendChild(f);
+        setTimeout(()=>f.remove(),1000);
+    }, 300);
+}
+</script>
+
+</body>
+</html>

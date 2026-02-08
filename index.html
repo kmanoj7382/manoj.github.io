@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday</title>
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fbc2eb);
+    background-size: 600% 600%;
+    animation: bg 10s ease infinite;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+@keyframes bg {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+.card {
+    background: rgba(255,255,255,0.25);
+    padding: 40px 60px;
+    border-radius: 30px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(0,0,0,0.3);
+    animation: pop 1s ease;
+}
+
+@keyframes pop {
+    from { transform: scale(0.5); opacity:0; }
+    to { transform: scale(1); opacity:1; }
+}
+
+h1 {
+    font-size: 3em;
+    color: #fff;
+    text-shadow: 0 0 10px #ff0080, 0 0 20px #ff0080;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px #ff0080; }
+    to { text-shadow: 0 0 30px #ff0080; }
+}
+
+h2 {
+    color: #fff;
+    margin-top: 10px;
+}
+
+#message {
+    color: #fff;
+    font-size: 1.4em;
+    margin-top: 20px;
+    min-height: 40px;
+}
+
+/* Button */
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    background: linear-gradient(45deg, #ff0080, #ffcc00);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 1.1em;
+    box-shadow: 0 0 15px #ff0080;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px #ffcc00;
+}
+
+/* Balloons */
+.balloon {
+    position: absolute;
+    bottom: -150px;
+    width: 60px;
+    height: 80px;
+    border-radius: 50%;
+    animation: float 8s linear infinite;
+}
+
+.balloon::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 40px;
+    background: #555;
+    top: 80px;
+    left: 50%;
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-120vh); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>🎉 Happy Birthday 🎂</h1>
+    <h2>Click for a surprise 👇</h2>
+    <a href="h.html" class="btn">🎁 Open Gift</a>
+    <div id="message"></div>
+</div>
+
+<!-- Balloons -->
+<div class="balloon" style="left:10%; background:#ff4d4d;"></div>
+<div class="balloon" style="left:30%; background:#4da6ff; animation-delay:2s;"></div>
+<div class="balloon" style="left:50%; background:#66ff66; animation-delay:4s;"></div>
+<div class="balloon" style="left:70%; background:#ffd24d; animation-delay:1s;"></div>
+<div class="balloon" style="left:90%; background:#ff66cc; animation-delay:3s;"></div>
+
+<script>
+const text = "Wishing you a day filled with happiness, surprises, and success ahead! 🎁✨";
+let i = 0;
+function typeEffect() {
+    if (i < text.length) {
+        document.getElementById("message").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeEffect, 80);
+    }
+}
+typeEffect();
+</script>
+
+</body>
+</html>
